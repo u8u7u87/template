@@ -1,0 +1,39 @@
+# Server settings  
+server:  
+    port:8080  
+    address:localhost  
+  
+# DATASOURCE  
+#jdbc:  
+#    driverClass: com.mysql.jdbc.Driver  
+#    url: jdbc:mysql://127.0.0.1:3306/local-kaishustory?useUnicode=true&characterEncoding=utf-8  
+#    username: root  
+#    password: admin  
+  
+# SPRING PROFILES  
+spring:    
+  datasource:
+    url: jdbc:mysql://localhost/test
+    username: root
+    password: admin
+    driver-class: com.mysql.jdbc.Driver     
+    # HTTP ENCODING  
+    http:  
+        encoding.charset: UTF-8  
+        encoding.enable: true  
+        encoding.force: true  
+          
+# WeiXin Configuration  
+weixin:  
+    mp:  
+       appid: xx  
+       secret: ee  
+       token: weixin  
+       aeskey:  
+  
+# MyBatis  
+mybatis:  
+    typeAliasesPackage: com.modou.**.domain  
+    mapperLocations: classpath:/com/modou/**/mapper/*.xml  
+    configLocation: classpath:/mybatis-config.xml  
+  
