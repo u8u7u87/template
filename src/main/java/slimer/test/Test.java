@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import slimer.mapper.CustomerMapper;
+/*import slimer.mapper.CustomerMapper;*/
 import slimer.model.Customer;
 import slimer.model.CustomerExample;
 import slimer.model.TestModel;
@@ -40,8 +40,8 @@ public class Test {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	@Autowired
-	CustomerMapper customerMapper;
+/*	@Autowired
+	CustomerMapper customerMapper;*/
 	/**
 	 * return a ResolveView if @Control
 	 * @param name
@@ -125,12 +125,12 @@ public class Test {
 		return "test";
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("/testMybaits")
 	public List<Customer> testMybaits() {
 		CustomerExample customerExample=new CustomerExample();
 		customerExample.createCriteria();
 		List<Customer> customers= customerMapper.selectByExample(customerExample);
 		return customers;
-	}
+	}*/
 }
