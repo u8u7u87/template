@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,20 +93,20 @@ public class Test {
 	 * @param device
 	 * @return
 	 */
-	@RequestMapping(value="/device")
+	/*@RequestMapping(value="/device")
 	public @ResponseBody Device DeviceDetect(Device device) {
 		String deviceTypeString="Undetected";
 		List<Object[]> splitUpNames = Arrays.asList("John Woo", "Jeff Dean", "Josh Bloch", "Josh Long").stream()
                 .map(name -> name.split(" "))
                 .collect(Collectors.toList());
 		return device;
-	}
+	}*/
 	
 	/**basic jdbc connect
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/insert")
+/*	@RequestMapping(value="/insert")
 	public String inserTestModel(Model model) {
 		log.info("create tables.");
 		//jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
@@ -123,7 +123,7 @@ public class Test {
         ).forEach(customer -> log.info(customer.toString()));
         model.addAttribute("name", "success");
 		return "test";
-	}
+	}*/
 	
 	/*@ResponseBody
 	@RequestMapping("/testMybaits")

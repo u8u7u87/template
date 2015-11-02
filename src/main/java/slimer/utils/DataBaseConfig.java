@@ -36,6 +36,7 @@ public class DataBaseConfig {
 		return new DataSourceTransactionManager(dataSource());
 	}
 	
+	@Bean
 	public SqlSessionFactory SqlSessionFactoryBean() throws Exception {
 		org.mybatis.spring.SqlSessionFactoryBean sqlSessionFactoryBean=new org.mybatis.spring.SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource());

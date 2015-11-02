@@ -1,4 +1,4 @@
-package slimer.mapper;
+/*package slimer.mapper;
 
 import java.util.List;
 
@@ -22,4 +22,4 @@ public interface CustomerMapper {
     int updateByExampleSelective(@Param("record") Customer record, @Param("example") CustomerExample example);
 
     int updateByExample(@Param("record") Customer record, @Param("example") CustomerExample example);
-}
+}*/
