@@ -1,15 +1,11 @@
 package slimer.test;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 //import java.util.stream.Collectors;
-
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.mobile.device.Device;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
-/*import slimer.mapper.CustomerMapper;*/
-import slimer.model.Customer;
-import slimer.model.CustomerExample;
 import slimer.model.TestModel;
 import slimer.utils.jedis.SlimerCacheManager;
+/*import slimer.mapper.CustomerMapper;*/
 
 //@RestController
 @Controller
@@ -152,8 +142,9 @@ public class Test {
 		String keyString="1";
 		String value="test";
 		try {
-			/*cacheManager.set(keyString, value);
-			dataString=cacheManager.getbykey(keyString);*/
+			cacheManager.set(keyString, value);
+			dataString=cacheManager.getbykey(keyString);
+			cacheManager.del(keyString);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

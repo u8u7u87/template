@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.DisposableBean;
@@ -24,6 +26,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnection;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConverters;
 import org.springframework.data.redis.connection.jedis.JedisSentinelConnection;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
@@ -37,6 +40,7 @@ import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.Protocol;
 import redis.clients.util.Pool;
 
+@Component
 public class SlimerJedisConnectionFactory implements InitializingBean, DisposableBean, RedisConnectionFactory {
 
 	private final static Log log = LogFactory.getLog(JedisConnectionFactory.class);

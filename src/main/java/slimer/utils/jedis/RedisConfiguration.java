@@ -4,20 +4,23 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.util.StringUtils;
 
 import redis.clients.jedis.JedisPoolConfig;
 
+/**
+ * @author kelier
+ *redis configuration class
+ *use RedisProperties that defined by Spring boot ,read config properties in the application.yml
+ */
 @EnableAutoConfiguration
 public class RedisConfiguration {
-
-	@Value("${spring.redis.sentinel.master}")
-	private String sentinelMasterName = null;
-
-	@Value("${spring.redis.sentinel.nodes}")
-	private String hostAndPorts = null;
+	RedisProperties redisProperties;
+	
 
 	@Value("${jedis.pool.maxidl}")
 	private Integer maxIdle = null;
@@ -30,8 +33,8 @@ public class RedisConfiguration {
 
 	@Bean
 	public SlimerJedisConnectionFactory connectionFactory() {
-		Set<String> sentinelHostAndPorts = StringUtils.commaDelimitedListToSet(this.getHostAndPorts());
-		RedisSentinelConfiguration sc = new RedisSentinelConfiguration(this.getSentinelMasterName(), sentinelHostAndPorts);
+		Set<String> sentinelHostAndPorts = StringUtils.commaDelimitedListToSet(redisProperties.getSentinel().getNodes());
+		RedisSentinelConfiguration sc = new RedisSentinelConfiguration(redisProperties.getSentinel().getMaster(), sentinelHostAndPorts);
 		JedisPoolConfig pc = this.createPoolConfig();
 		SlimerJedisConnectionFactory factory = new SlimerJedisConnectionFactory(sc, pc);
 
@@ -45,14 +48,6 @@ public class RedisConfiguration {
 		poolConfig.setMaxTotal(this.getMaxTotal());
 
 		return poolConfig;
-	}
-
-	private String getSentinelMasterName() {
-		return this.sentinelMasterName;
-	}
-
-	private String getHostAndPorts() {
-		return this.hostAndPorts;
 	}
 
 	public Integer getMaxIdle() {
