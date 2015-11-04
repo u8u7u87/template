@@ -30,4 +30,15 @@ public class Customer {
     public void setLastName(String lastName) {
         this.lastName = lastName == null ? null : lastName.trim();
     }
+
+	public Customer() {
+		super();
+	}
+
+	public Customer(Long id, String firstName, String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 }

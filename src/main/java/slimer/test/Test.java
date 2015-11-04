@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 //import java.util.stream.Collectors;
 
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+
 /*import slimer.mapper.CustomerMapper;*/
 import slimer.model.Customer;
 import slimer.model.CustomerExample;
 import slimer.model.TestModel;
+import slimer.utils.jedis.SlimerCacheManager;
 
 //@RestController
 @Controller
@@ -39,6 +44,12 @@ public class Test {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	SlimerCacheManager cacheManager;
+	
+	@Autowired  
+    TestService service; 
 	
 /*	@Autowired
 	CustomerMapper customerMapper;*/
@@ -133,4 +144,29 @@ public class Test {
 		List<Customer> customers= customerMapper.selectByExample(customerExample);
 		return customers;
 	}*/
+    
+    @ResponseBody
+    @RequestMapping(value="/testJedis")
+    public String testJedis() {
+		String dataString=null;
+		String keyString="1";
+		String value="test";
+		try {
+			/*cacheManager.set(keyString, value);
+			dataString=cacheManager.getbykey(keyString);*/
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dataString;
+	}
+    
+
+    @RequestMapping("/testredis")  
+    @ResponseBody  
+    public String putCache(){  
+    	service.findCustomer(1l,"wang","yunfei");    
+        System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");  
+        return "ok";  
+    } 
 }

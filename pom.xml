@@ -51,6 +51,36 @@
             <artifactId>spring-boot-starter-redis</artifactId>
         </dependency>
         
+      <!--   <dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.7.2</version>
+		    <type>jar</type>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.6.0.RELEASE</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>1.5.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-elasticsearch</artifactId>
+			<version>1.2.0.RELEASE</version>
+		</dependency>
+		
         <!-- add jdbc model -->
  	    <dependency>
 			<groupId>com.zaxxer</groupId>
@@ -141,4 +171,33 @@
 			</plugin>
         </plugins>
     </build>
+    
+    <profiles>
+		<profile>
+			<id>dev</id>
+			<activation>true</activation>
+			<properties>
+				<label>local</label>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<master.jdbc.url><![CDATA[jdbc:mysql://192.168.70.98:3306/hms_new?zeroDateTimeBehavior=convertToNull&characterEncoding=utf8]]></master.jdbc.url>
+				<master.jdbc.user>root</master.jdbc.user>
+				<master.jdbc.password>imike@2015</master.jdbc.password>
+				<slave.jdbc.url><![CDATA[jdbc:mysql://192.168.70.98:3306/hms_new?zeroDateTimeBehavior=convertToNull&characterEncoding=utf8]]></slave.jdbc.url>
+				<slave.jdbc.user>root</slave.jdbc.user>
+				<slave.jdbc.password>imike@2015</slave.jdbc.password>
+				<spring.redis.sentinel.master>ots-redis</spring.redis.sentinel.master>
+				<spring.redis.sentinel.nodes>10.4.1.14:26379,10.4.1.210:26379</spring.redis.sentinel.nodes>
+
+				<elasticsearch.clusterhosts>192.168.81.45:9300</elasticsearch.clusterhosts>
+				<elasticsearch.clustername>ota2-test-elastic</elasticsearch.clustername>
+				<elasticsearch.index>ots</elasticsearch.index>
+				<elasticsearch.type>hotel</elasticsearch.type>
+	
+				<jedis.pool.maxidl>20</jedis.pool.maxidl>
+				<jedis.pool.minidl>8</jedis.pool.minidl>
+				<jedis.pool.maxtotal>500</jedis.pool.maxtotal>
+				
+			</properties>
+		</profile>
+		</profiles>
 </project>

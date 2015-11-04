@@ -6,7 +6,7 @@ server:
 # DATASOURCE  
 #jdbc:  
 #    driverClass: com.mysql.jdbc.Driver  
-#    url: jdbc:mysql://127.0.0.1:3306/local-kaishustory?useUnicode=true&characterEncoding=utf-8  
+#    url: jdbc:mysql://127.0.0.1:3306/local-kaishustory?useUnicode:true&characterEncoding:utf-8  
 #    username: root  
 #    password: admin  
   
@@ -22,7 +22,17 @@ spring:
         encoding.charset: UTF-8  
         encoding.enable: true  
         encoding.force: true  
-          
+    redis:
+        sentinel:
+            master:ots-redis
+            nodes:10.4.1.14:26379
+#jedis
+jedis:
+    pool:
+        maxidl:20
+        minidl:8
+        maxtotal:500
+
 # WeiXin Configuration  
 weixin:  
     mp:  
@@ -36,4 +46,5 @@ mybatis:
     typeAliasesPackage: com.modou.**.domain  
     mapperLocations: classpath:/com/modou/**/mapper/*.xml  
     configLocation: classpath:/mybatis-config.xml  
+    
   
