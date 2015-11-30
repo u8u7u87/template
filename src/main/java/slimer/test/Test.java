@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 //import java.util.stream.Collectors;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,6 +136,10 @@ public class Test {
 		return customers;
 	}*/
     
+    /**
+     * use slimercachemanage to get jedis
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value="/testJedis")
     public String testJedis() {
@@ -153,11 +158,28 @@ public class Test {
 	}
     
 
+    /**
+     * use redisConfig.java to get jedis
+     * @return
+     */
     @RequestMapping("/testredis")  
     @ResponseBody  
     public String putCache(){  
     	service.findCustomer(1l,"wang","yunfei");    
         System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");  
+        return "ok";  
+    } 
+    
+    @RequestMapping("/testcountdownlatch")  
+    @ResponseBody  
+    public String testCountDownLatch(){  
+    	try {
+			service.testCountDownLatch();
+			service.testCyclicBarrier();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}     
         return "ok";  
     } 
 }

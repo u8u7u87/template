@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import slimer.influxdb.InfluxDBService;
 import slimer.redismessage.MessageSender;
 
 @SpringBootApplication
@@ -15,8 +16,9 @@ public class App {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx =SpringApplication.run(App.class, args);
-		MessageSender sender=ctx.getBean(MessageSender.class);
-		sender.sendMessage("test redis");
+		//MessageSender sender=ctx.getBean(MessageSender.class);
+		//sender.sendMessage("test redis");
+		new InfluxDBService().test();
 	}
 
 }

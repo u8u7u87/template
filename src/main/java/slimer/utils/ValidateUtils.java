@@ -2,7 +2,8 @@ package slimer.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.elasticsearch.common.base.Strings;
+
+import com.google.common.base.Strings;
 
 
 public class ValidateUtils {

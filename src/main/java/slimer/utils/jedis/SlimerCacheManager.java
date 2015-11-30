@@ -369,6 +369,60 @@ public class SlimerCacheManager {
 		}
 		return s;
 	}
+	
+	
+	/**
+	 * return a global increment number
+	 * @param key
+	 * @return
+	 * @throws Exception
+	 */
+	public Long getIncr(String key,Long interval) throws Exception{
+		Long s = null;
+		Jedis jedis = this.getNewJedis();
+		try {
+			if (interval==0) {
+				s = jedis.incr(key);
+			}else {
+				s = jedis.incrBy(key, interval);
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
+		return s;
+	}
+	
+	
+	/**
+	 * return a global decrement number
+	 * @param key
+	 * @return
+	 * @throws Exception
+	 */
+	public Long getDecr(String key,Long interval) throws Exception{
+		Long s = null;
+		Jedis jedis = this.getNewJedis();
+		try {
+			if (interval==0) {
+				s = jedis.decr(key);
+			}else {
+				s = jedis.decrBy(key, interval);
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
+		return s;
+	}
 
 	/**
 	 * 得到指定名称的所有缓存信息
