@@ -1,15 +1,22 @@
 package slimer.test;
 
+import java.io.IOException;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.elasticsearch.common.base.Strings;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import slimer.model.Customer;
+import slimer.model.TestModel;
 
 @Service
 public class TestService {
@@ -96,4 +103,24 @@ public class TestService {
        exec.shutdown();  
                  
    }  
+   
+   public void jsonTransfer(String jsonString,TestModel t) {
+	if (!Strings.isNullOrEmpty(jsonString)) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
+		try {
+			TestModel t2=mapper.readValue(jsonString,TestModel.class);
+			System.out.println(t2.toString());
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+   }
 }

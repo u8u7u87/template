@@ -29,7 +29,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        
         <!-- add monitor on action environment -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,7 +63,7 @@
 			<artifactId>spring-data-redis</artifactId>
 			<version>1.6.0.RELEASE</version>
 		</dependency> -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 			<version>1.5.1</version>
@@ -74,7 +73,7 @@
 					<groupId>log4j</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency> -->
+		</dependency> 
 
 		<!-- <dependency>
 			<groupId>org.springframework.data</groupId>
@@ -134,6 +133,7 @@
             <version>2.0</version>
         </dependency>
         
+        <!-- dubbo -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
@@ -154,6 +154,7 @@
             </exclusions>
         </dependency>
         
+        <!-- zookeeper -->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
@@ -171,6 +172,27 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.7</version>
 		</dependency>
+		
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.2.4.RELEASE</version>
+		</dependency>
+		
+		<!-- jackson -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		
     </dependencies>
 
     <repositories>

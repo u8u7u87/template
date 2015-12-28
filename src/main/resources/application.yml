@@ -46,4 +46,9 @@ mybatis:
     mapperLocations: classpath:/com/modou/**/mapper/*.xml  
     configLocation: classpath:/mybatis-config.xml  
     
-  
+# elasticsearch
+elasticsearch:
+             clustername:slimer-es
+             clusterNodes:127.0.0.1:9200
+             index:test
+             type:es
